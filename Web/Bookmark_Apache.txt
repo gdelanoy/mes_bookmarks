@@ -1,0 +1,75 @@
+Apache / Serveur Web :
+
+https://www.cyberciti.biz/faq/how-to-setup-a-lamp-server-on-debian-linux-8-jessie/
+
+https://www.cyberciti.biz/faq/debian-8-ubuntu-14-04-lts-install-suhosin-extension-command/
+
+https://www.cyberciti.biz/faq/linux-web-server-firewall-tutorial/
+
+https://mozilla.github.io/server-side-tls/ssl-config-generator/
+
+https://www.system-linux.eu/?post/2009/01/02/Configuration-en-tout-genre-et-fichier-de-conf-dapache
+
+https://www.system-linux.eu/index.php?post/2009/04/15/Certificats-ssl-pour-du-https-vite-fait-mal-fait-%3Ap
+
++ Explications : https://www.system-linux.eu/index.php?post/2009/12/04/Certificat-x509-pour-votre-Apache
+
+https://www.cyberciti.biz/faq/enable-tcp-syn-cookie-protection/
+
+https://www.system-linux.eu/index.php?post/2008/06/19/phpMyAdmin
+
+https://www.system-linux.eu/index.php?post/2009/01/03/Securiser-votre-phpini
+
+https://www.cyberciti.biz/faq/how-to-back-up-a-web-server/
+
+Exemple de robots.txt :
+
+User-agent: Googlebot
+
+Disallow: /cgi-bin/
+
+Disallow: /~*
+
+Disallow: /doc/
+
+Disallow: /user.php
+
+Disallow: /contact-us/
+
+Disallow: /config/
+
+User-agent : ia_archiver-web.archive.org
+
+Disallow: /cgi-bin/
+
+Disallow: /~*
+
+Disallow: /doc/
+
+Disallow: /user.php
+
+Disallow: /contact-us/
+
+User-agent : *
+
+Disallow: /cgi-bin/
+
+Disallow: /~*
+
+Disallow: /doc/
+
+Disallow: /user.php
+
+Disallow: /contact-us/
+
+Pound : load-balancing reverse proxy
+
+https://www.cyberciti.biz/faq/linux-http-https-reverse-proxy-load-balancer/
+
+Apache :
+
+https://mozilla.github.io/server-side-tls/ssl-config-generator/
+
+https://letsencrypt.org/
+
+https://www.cyberciti.biz/faq/apache-restrict-access-based-on-ip-address-to-selected-directories/

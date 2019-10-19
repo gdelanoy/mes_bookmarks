@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Type=Link
+Name=How to use a GPG key for SSH authentication
+Comment=
+Icon=gnome-fs-bookmark
+URL=https://www.linode.com/docs/security/authentication/gpg-key-for-ssh-authentication/

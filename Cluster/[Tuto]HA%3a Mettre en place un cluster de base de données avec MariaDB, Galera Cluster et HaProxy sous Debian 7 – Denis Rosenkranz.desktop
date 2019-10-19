@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Type=Link
+Name=[Tuto]HA: Mettre en place un cluster de base de données avec MariaDB, Galera Cluster et HaProxy sous Debian 7 – Denis Rosenkranz
+Comment=
+Icon=gnome-fs-bookmark
+URL=http://denisrosenkranz.com/tutoha-mettre-en-place-un-cluster-de-base-de-donnees-avec-mariadb-galera-cluster-et-haproxy-sous-debian-7/

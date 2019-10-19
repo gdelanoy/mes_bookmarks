@@ -1,0 +1,289 @@
+UNE SUPER CONF PF à ADAPTER :
+
+# Created by Vivek Gite <vivek@nixcraft.com>
+
+# See more info @
+
+# http://bash.cyberciti.biz/firewall/pf-ipv6-ipv4-firewall-for-freebsd-openbsd-netbsd/
+
+tcp_services = "{ ssh, smtp, domain, www, https, 122, ntp, 43}"
+
+udp_services = "{ domain, ntp }"
+
+icmp_types = "{ echoreq, unreach }"
+
+mail_ports = "{ smtp, imaps }"
+
+ 
+
+### define tables
+
+table <droplasso> persist file "/etc/pf.drop.lasso.conf"
+
+table <blockedip> persist file "/etc/pf.block.ip.conf"
+
+ 
+
+### IPv4 ranges
+
+martians = "{ 127.0.0.0/8, 192.168.0.0/16, 172.16.0.0/12, 10.0.0.0/8, 169.254.0.0/16, 192.0.2.0/24, 0.0.0.0/8, 240.0.0.0/4, 255.255.255.255/32 }"
+
+http_servers = "{ 208.xx.yyy.zzz }"
+
+mail_servers = "{ 208.xx.yyy.zzz}"
+
+dns_servers = "{ 208.xx.yyy.zzz }"
+
+ 
+
+adminrange = "66.228.118.0/23"
+
+ 
+
+### ipv6 ranges
+
+adminrange6 = "{ 2607:F0D0:2000:0000::/48 }"
+
+http_servers6 = "{ 260z:xxx.. }"
+
+mail_servers6 = "{ 260z:xxx.. }"
+
+dns_servers6 = "{ 260z:xxx.. }"
+
+ 
+
+IPV6LAN = "{ 260z:xxx../64 }"
+
+IPV6MAIN = "{ 260z:xxx.. }"
+
+ 
+
+### Interfaces
+
+ext_if = "em1"
+
+int_if = "em0"
+
+ 
+
+## S0.2: Options
+
+set block-policy return
+
+set loginterface $ext_if
+
+ 
+
+#### S0.3: Normliaztion
+
+#scrub provides a measure of protection against certain kinds of attacks based on incorrect handling of packet fragments
+
+scrub in all
+
+ 
+
+#### S0.4: NAT and RDR start
+
+ 
+
+# Drop ALL incomming everything
+
+block log all
+
+ 
+
+# Try to block nmap scans
+
+block in log quick on $ext_if inet proto tcp from any to any flags FUP/FUP
+
+ 
+
+#IPv6 - pass in/out all IPv6 ICMP traffic
+
+pass in quick proto icmp6 all
+
+ 
+
+# unlimited traffic for vpn and loopback
+
+set skip on {lo0, $int_if}
+
+ 
+
+# activate spoofing protection for all interfaces
+
+block in quick from urpf-failed
+
+#antispoof is a common special case of filtering and blocking. This mechanism protects against activity from spoofed or forged IP addresses
+
+antispoof log for $ext_if
+
+ 
+
+#Block RFC 1918 addresses
+
+block drop in log (all)  quick on $ext_if from $martians to any
+
+block drop out log (all) quick on $ext_if from any to $martians
+
+ 
+
+#Block DROP LASSO
+
+#block log (all) all
+
+# pfctl -t droplasso -T show
+
+block drop in log (all)  quick on $ext_if from <droplasso> to any
+
+block drop out log (all) quick on $ext_if from any to <droplasso>
+
+ 
+
+# pfctl -t blockedip -T show
+
+block drop in log (all)  quick on $ext_if from <blockedip> to any
+
+block drop out log (all) quick on $ext_if from any to <blockedip>
+
+ 
+
+# allow outgoing via ssh, smtp, domain, www, https, 122
+
+pass out on $ext_if proto tcp to any port $tcp_services
+
+pass out on $ext_if proto udp to any port $udp_services
+
+ 
+
+# trace route
+
+pass out on $ext_if inet proto udp from any to any port 33433 >< 33626 keep state
+
+ 
+
+# SL admin allow 66.228.118.0/255.255.254.0 (23)
+
+pass in on $int_if from $adminrange to any
+
+ 
+
+# pass in  on $ext_if proto tcp from any to any port 25
+
+pass in on $ext_if inet proto tcp from 72.xx.yyy.zzz to 208.xx.yyy.zzz port ssh flags S/SA synproxy state
+
+pass in on $ext_if inet proto udp from any to $dns_servers  port domain
+
+pass in on $ext_if inet proto tcp from any to $dns_servers  port domain flags S/SA synproxy state
+
+pass in on $ext_if inet proto tcp from any to $http_servers port http flags S/SA synproxy state
+
+pass in on $ext_if inet proto tcp from any to 208.43.79.236 port https flags S/SA synproxy state
+
+pass in on $ext_if inet proto tcp from any to $mail_servers port $mail_ports flags S/SA synproxy state
+
+ 
+
+# ping pong
+
+pass inet proto icmp all icmp-type $icmp_types keep state
+
+ 
+
+# Outgoing ftp
+
+pass out on $ext_if inet proto tcp from any to any port ftp
+
+pass out on $ext_if inet proto tcp from any to any port >1023
+
+ 
+
+###### IPv6 rules #############
+
+# Allow outgoing services
+
+pass out on $ext_if inet6 proto tcp to any port $tcp_services
+
+pass out on $ext_if inet6 proto udp to any port $udp_services
+
+ 
+
+# Trace route out
+
+pass out on $ext_if inet6 proto udp from any to any port 33433 >< 33626 keep state
+
+ 
+
+# SL Admin in
+
+pass in on $ext_if inet6 from $adminrange6 to any
+
+ 
+
+# Open ports out
+
+pass in on $ext_if inet6 proto udp from any to $dns_servers6 port domain
+
+pass in on $ext_if inet6 proto tcp from any to $dns_servers6 port domain keep state
+
+pass in on $ext_if inet6 proto tcp from any to $http_servers6 port http keep state
+
+pass in on $ext_if inet6 proto tcp from any to $mail_servers6 port $mail_ports keep state
+
+ 
+
+# Ftp out
+
+pass out on $ext_if inet6 proto tcp from any to any port ftp
+
+pass out on $ext_if inet6 proto tcp from any to any port >1023                                                                      
+
+ 
+
+# Allow ping pong out
+
+pass out on $ext_if inet6 proto icmp6 all icmp6-type echoreq keep state
+
+ 
+
+# ND solicitation out
+
+pass out on $ext_if inet6 proto icmp6 all icmp6-type {neighbradv, neighbrsol}
+
+ 
+
+# ND advertisement in
+
+pass in on $ext_if inet6 proto icmp6 all icmp6-type {neighbradv, neighbrsol}
+
+ 
+
+# Router advertisement out
+
+pass out on $ext_if inet6 proto icmp6 all icmp6-type routeradv
+
+ 
+
+# Router solicitation in
+
+pass in on $ext_if inet6 proto icmp6 all icmp6-type routersol
+
+ 
+
+# Allow Ping pong in
+
+pass in on $ext_if inet6 proto icmp6 all icmp6-type echoreq
+
+You also need to create /etc/pf.block.ip.conf file with list of IPs and subnet to block manually as follows:
+
+202.54.1.2 191.10.1.0/29
+
+1             202.54.1.2
+
+2             191.10.1.0/29
+
+À partir de l’adresse <https://bash.cyberciti.biz/firewall/pf-ipv6-ipv4-firewall-for-freebsd-openbsd-netbsd/>
+
+Une autre lecture inspirante :
+
+http://rlworkman.net/howtos/OpenBSD_pf_guide.html

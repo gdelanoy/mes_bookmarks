@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Type=Link
+Name=Installing Debian 8 (Jessie) with LUKS Encrypted /home and /var Partitions
+Comment=
+Icon=gnome-fs-bookmark
+URL=https://www.tecmint.com/install-debian-8-with-luks-encrypted-home-var-lvm-partitions/

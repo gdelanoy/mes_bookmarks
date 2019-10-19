@@ -1,0 +1,71 @@
+SSH :
+
+https://www.system-linux.eu/index.php?post/2009/09/10/Connexion-ssh-automatique-par-cl%C3%A9
+
+https://www.cyberciti.biz/faq/create-ssh-config-file-on-linux-unix/
+
+https://www.cyberciti.biz/faq/how-to-set-up-ssh-keys-on-linux-unix/
+
+https://www.cyberciti.biz/faq/debian-ubuntu-restricting-ssh-user-session-to-a-directory-chrooted-jail/
+
+https://www.cyberciti.biz/faq/set-up-ssh-tunneling-on-a-linux-unix-bsd-server-to-bypass-nat/
+
+https://www.cyberciti.biz/faq/how-to-mount-remote-directory-filesystems-with-sshfs-on-linux/
+
+https://www.system-linux.eu/index.php?post/2010/03/17/CentOS%3A-Compilation%2C-Installation-et-Configuration-de-SSLH.
+
+https://www.system-linux.eu/index.php?post/2009/06/11/Syst%C3%A8me-de-fichier-ssh-avec-sshfs
+
+https://www.cyberciti.biz/faq/howto-setup-vnc-server-ssh-client-tunnel-via-internet/
+
+https://www.cyberciti.biz/faq/ssh-passwordless-login-with-keychain-for-scripts/
+
+How to force sshd server to display login banner before login (change the ssh server login banner)
+
+by Vivek Gite on April 26, 2004 last updated September 20, 2007
+
+in Debian Linux, FreeBSD, Gentoo Linux, Howto, Linux, Networking, OpenBSD, RedHat/Fedora Linux, Security, Tips, Ubuntu Linux, UNIX
+
+Pre login banner is use for sending a warning message before authentication may be relevant for getting legal protection or just give out information to users. The contents of the specified file are sent to the remote user before authentication is allowed. This option is only available for protocol version 2. By default, no banner is displayed (if you are using latest version of Linux/UNIX then you do not have to worry about version issue).
+
+Procedure to change OpenSSH pre login banner
+
+1) By default sshd server turns off this feature.
+
+2) Login as the root user; create your login banner file:
+
+# vi /etc/ssh/sshd-banner
+
+Append text:
+
+Welcome to nixCraft Remote Login!
+
+3) Open sshd configuration file /etc/sshd/sshd_config using a text editor:
+
+# vi /etc/sshd/sshd_config
+
+4) Add/edit the following line:
+
+Banner /etc/ssh/sshd-banner
+
+5) Save file and restart the sshd server:
+
+# /etc/init.d/sshd restart
+
+6) Test your new banner (from Linux or UNIX workstation or use any other ssh client):
+
+$ ssh vivek@rh3es.nixcraft.org
+
+Output:
+
+Welcome to nixCraft Labs!
+
+vivek@ rh3es.nixcraft.org’s password:
+
+Please note that this feature may not work with third party ssh client such as Putty.
+
+À partir de l’adresse <https://www.cyberciti.biz/tips/change-openssh-sshd-server-login-banner.html>
+
+https://www.cyberciti.biz/tips/linux-pam-configuration-that-allows-or-deny-login-via-the-sshd-server.html
+
+https://www.cyberciti.biz/tips/linux-unix-bsd-openssh-server-best-practices.html

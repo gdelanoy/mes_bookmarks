@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Type=Link
+Name=How to Change Docker Logging Driver from journald to json-file
+Comment=
+Icon=user-bookmarks
+URL=https://manastri.blogspot.com/2019/03/how-to-change-docker-logging-driver.html

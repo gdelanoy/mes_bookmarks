@@ -1,0 +1,129 @@
+
+-------
+-------
+BASH :
+-------
+-------
+COMMENT BIEN DÉMARRER UN SCRIPT BASH :
+
+#!/bin/bash
+#let script exit if a command fails
+set -o errexit 
+OR
+set -e
+#let script exit if an unsed variable is used
+set -o nounset
+OR
+set -u
+
+user=`echo “$UID”`
+user=$(echo “$UID”)
+readonly passwd_file=”/etc/passwd”
+readonly group_file=”/etc/group”
+...
+https://www.tecmint.com/useful-tips-for-writing-bash-scripts-in-linux/?utm_content=bufferb3b37&utm_medium=social&utm_source=facebook.com&utm_campaign=buffer
+
+Astuces en bash :
+https://www.jujens.eu/posts/2014/Sep/07/diverses-astuces-shell/
+
+Alias dans .bashrc :
+ipext="curl -4 icanhazip.com"
+
+Correction de syntaxe bash :
+http://www.shellcheck.net/
+(existe aussi en .deb, .rpm ...)
+
+https://linuxacademy.com/blog/linux/tutorial-the-best-tips-tricks-for-bash-explained/
+https://www.tecmint.com/useful-tips-for-writing-bash-scripts-in-linux/
+http://www.linuxjournal.com/article/7385 !!
+http://blog.wescale.fr/2016/04/07/bash-pro-tips/ !!
+https://www.linux.com/learn/bash-tips-linux-sysadmins
+http://www.softpanorama.org/Scripting/Shellorama/bash_tips_and_tricks.shtml  !!!
+https://github.com/epety/100-shell-script-examples
+https://github.com/awesome-lists/awesome-bash
+http://wiki.bash-hackers.org/doku.php
+http://www.linuxlinks.com/Software/Utilities/Scripts/index.shtml
+https://news.ycombinator.com/item?id=14769384
+https://natelandau.com/bash-scripting-utilities/  !!
+http://hautrive.free.fr/linux/page-shell-linux.html
+http://www.ai.univ-paris8.fr/~hw/unx5.pdf
+
+https://www.reddit.com/r/bashtricks/
+https://jvns.ca/blog/2017/03/26/bash-quirks/
+https://en.wikibooks.org/wiki/Bash_Shell_Scripting
+
+$ git clone https://github.com/alexanderepstein/Bash-Snippets
+
+
+AWK :
+http://www.ai.univ-paris8.fr/~fb/Cours/Exposes0405-1/awk.pdf
+http://tondeur.herve.free.fr/docs/awk.pdf
+http://connect.ed-diamond.com/GNU-Linux-Magazine/GLMF-131/AWK-le-langage-script-de-reference-pour-le-traitement-de-fichiers
+http://lea-linux.org/documentations/Dev-awk
+https://www.developpez.net/forums/d245076/general-developpement/programmation-systeme/linux/fonction-awk/
+http://www.quennec.fr/trucs-astuces/syst%C3%A8mes/gnulinux/programmation-shell-sous-gnulinux/le-langage-de-programmation-awk/principe/structure-dun-script-awk
+http://www.linuxfocus.org/Francais/September1999/article103.html
+http://www.bruno-garcia.net/www/Unix/Docs/awk.html
+https://www.shellunix.com/awk.html
+
+Shell Scripting :
+file:///home/gdelanoy/Documents/Safe/Documentation/linux/Adanced_Bash_Scripting-2.3-fr/   (SAFE !°
+http://www.tuteurs.ens.fr/unix/shell/script.html#s2_2
+
+
+SED :
+https://fr.wikipedia.org/wiki/Stream_Editor
+http://tondeur.herve.free.fr/docs/cours-sed.pdf
+http://okki666.free.fr/docmaster/articles/linux130.html
+http://www.tux-planet.fr/remplacer-un-chaine-de-caractere-avec-la-commande-sed/
+
+Redirection :
+http://wiki.bash-hackers.org/howto/redirection_tutorial
+http://wiki.bash-hackers.org/syntax/redirection
+
+Select : 
+http://askubuntu.com/questions/1705/how-can-i-create-a-select-menu-in-a-shell-script
+
+While :
+https://www.cyberciti.biz/faq/bash-while-loop/
+
+Grep ( + exercices) :
+http://www.tuteurs.ens.fr/unix/exercices/solutions/grep-sol.html
+
+stdin, stdout, stderr :
+http://wiki.bash-hackers.org/howto/redirection_tutorial
+
+
+Expressions régulières :
+http://www.quennec.fr/book/export/html/414
+http://www.linux-france.org/article/web/egraffin/regexp.php
+http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_04_01.html
+
+Métacaractères :
+http://www.bloguelinux.ca/ligne-de-commande-linux-101-2-bash-metacaractere/
+http://www.lifl.fr/~marquet/cnl/pdc/tpiu-002.html
+
+Bash exercices :
+http://lipn.univ-paris13.fr/~cerin/SE/ExercicesShell.html
+https://www.developpez.net/forums/d1213452-2/systemes/linux/shell-commandes-gnu/exercices-liste-d-exercices-corriges-shell-script-bash/
+https://openclassrooms.com/forum/sujet/exercices-scripts-bash
+http://ineumann.developpez.com/tutoriels/linux/exercices-shell/
+http://www-inf.it-sudparis.eu/cours/UNIX/Shell/TP/TP_prog_shell.cor.html
+
+FIND :
+http://www.thegeekstuff.com/2009/06/15-practical-unix-linux-find-command-examples-part-2/  !!!
+
+VIM :
+http://www.thegeekstuff.com/2009/03/8-essential-vim-editor-navigation-fundamentals/
+https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/
+
+http://www.openvim.com/tutorial.html
+
+http://vimgolf.com/
+
+!!! https://vim-adventures.com/ !!!
+
+https://github.com/powerline/powerline   !!! Pour un vim plus beau !!!
+(airline est encore mieux !)
+
+

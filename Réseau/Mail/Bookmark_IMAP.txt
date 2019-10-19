@@ -1,0 +1,219 @@
+IMAP :
+
+https://www.system-linux.eu/index.php?post/2010/03/11/IMAP-Spam-Begone-%28isbg%29
+
+Configure Postfix for DNS Blackhole Lists such as dsbl.org / spamhaus.org database
+
+by Vivek Gite on October 16, 2007 last updated October 16, 2007
+
+Q. How do I configure my Postfix mail server to scan incoming mail for spam using DNS Blackhole List such as:
+
+a) The Spamhaus
+
+b) Open Relay Database etc
+
+A. To discard spam or garbage email you can use 3rd party services such as Spamhaus. These are realtime database of IP addresses of verified spam sources and spam operations (including spammers, spam gangs and spam support services), maintained by the Spamhaus or other project team and supplied as a free service to help email administrators better manage incoming email streams.
+
+Postfix MTA DNS Blackhole Lists Configuration
+
+Under Postfix mail server you need to define DNSRBLs in main.cf file using the smtpd_recipient_restrictions configuration directive. Open main.cf file:
+
+# vi /etc/postfix/main.cf
+
+Locate smtpd_recipient_restrictions line and setup reject_rbl_client as follows:
+
+smtpd_recipient_restrictions =
+
+....
+
+.....
+
+   reject_rbl_client list.dsbl.org,
+
+   reject_rbl_client sbl-xbl.spamhaus.org,
+
+   reject_rbl_client cbl.abuseat.org,
+
+   reject_rbl_client dul.dnsbl.sorbs.net,
+
+....
+
+   permit
+
+Here is my complete configuration:
+
+smtpd_recipient_restrictions =
+
+   reject_invalid_hostname,
+
+   reject_non_fqdn_hostname,
+
+   reject_non_fqdn_sender,
+
+   reject_non_fqdn_recipient,
+
+   reject_unknown_sender_domain,
+
+   reject_unknown_recipient_domain,
+
+   reject_unauth_destination,
+
+   permit_mynetworks,
+
+   reject_rbl_client list.dsbl.org,
+
+   reject_rbl_client sbl-xbl.spamhaus.org,
+
+   reject_rbl_client cbl.abuseat.org,
+
+   reject_rbl_client dul.dnsbl.sorbs.net,
+
+   permit
+
+Save and close the file. Restart / reload postfix mail server:
+
+# /etc/init.d/postfix restart
+
+À partir de l’adresse <https://www.cyberciti.biz/faq/page/200/>
+
+Postfix block PDF or ZIP files attachments
+
+by Vivek Gite on August 10, 2007 last updated August 10, 2007
+
+Q. How do I block all PDF or ZIP files attachments under Postfix Mail Server?
+
+A. You can easily block email attachments using mime header check.
+
+Open postfix config file
+
+Login as the root, enter:
+
+# vi /etc/postfix/main.cf
+
+Block zip or pdf files
+
+Use mime_header_checks postfix config directive, enter:
+
+mime_header_checks = regexp:/etc/ostfix/block_attachments
+
+Save and close the file. Open /etc/ostfix/block_attachments file and append code as follows:
+
+/name=[^>]*\.(pdf|zip)/ REJECT
+
+Save and close the file.
+
+Restart Postfix MTA
+
+You must restart or reload postfix:
+
+# /etc/init.d/postfix reload
+
+À partir de l’adresse <https://www.cyberciti.biz/faq/page/209/>
+
+Howto: Linux Dovecot Secure IMAPS / POP3S SSL Server configuration
+
+by Vivek Gite on July 16, 2007 last updated July 16, 2007
+
+in CentOS, Debian / Ubuntu, EMail Servers, HP-UX Unix, Linux, Networking, RedHat and Friends, Security, Solaris-Unix, Suse, Ubuntu Linux, UNIX
+
+Q. How do I configure Dovecot IMAPS and POP3s server using SSL certificate? Can I use SSL certificates generated for Postfix mail server?
+
+A. Dovecot is an IMAP server for Linux/UNIX-like systems, written with security primarily in mind. It also contains a small POP3 server. It supports mail in either of maildir or mbox formats.
+
+You need to enable POP3s and IMAPS. Open default configuration file:
+
+# vi /etc/dovecot.conf
+
+Make sure POP3S and IMAPS are enabled:
+
+protocols = imaps pop3s
+
+Next you must set PEM encoded X.509 SSL/TLS certificate and private key. They’re opened before dropping root privileges, so keep the key file unreadable by anyone but root (see how create certificate CSR and configure certificates for Postfix):
+
+ssl_cert_file = /etc/postfix/ssl/smtp.theos.in.crt
+
+ssl_key_file = /etc/postfix/ssl/smtp.theos.in.key
+
+If key file is password protected, give the password using ssl_key_password directive:
+
+ssl_key_password = myPassword
+
+Save and close the file. Restart Dovecot server:
+
+# /etc/init.d/dovecot restart
+
+À partir de l’adresse <https://www.cyberciti.biz/faq/unix-dovecot-ssl-tls-server-configuration/>
+
+Postfix blacklist or reject an email address
+
+by Vivek Gite on July 4, 2007 last updated November 6, 2007
+
+in CentOS, EMail Servers, Linux
+
+Q. Iâ€™ve Postfix based CentOS Linux server. I need to blacklist email ID: user@abadboy.com . How do I blacklist email address with postfix? I also have spamassassin software installed.
+
+A. By default, the Postfix SMTP server accepts any sender address. However you can block / blacklist sender email address easily with Postfix. It has SMTP server access table.
+
+Open /etc/postfix/sender_access file
+
+# cd /etc/postfix
+
+# vi sender_access
+
+Append sender email id as follows:
+
+user@abadboy.com REJECT
+
+Save and close the file. Use postmap command to create a database:
+
+# postmap hash:sender_access
+
+Now open main.cf and add code as follows:
+
+smtpd_recipient_restrictions = check_sender_access hash:/etc/postfix/sender_access
+
+Save and close the file. Restart / reload postfix MTA:
+
+# /etc/init.d/postfix restart
+
+You can also use spamassassin to blacklist email address. Just add to your own spamassassin configuration or to /etc/mail/spamassassin/local.cf file:
+
+# vi /etc/mail/spamassassin/local.cf
+
+Append blacklist as follows:
+
+blacklist_from user@abadboy.com
+
+Save and close the file. Restart spamassassin:
+
+# /etc/init.d/spamassassin restart
+
+spamassassin will marke mail as SPAM instead of rejecting the same.
+
+À partir de l’adresse <https://www.cyberciti.biz/faq/howto-blacklist-reject-sender-email-address/>
+
+Linux / UNIX find out size of email account or mailbox
+
+by Vivek Gite on June 7, 2007 last updated June 7, 2007
+
+Q. I would like to show the list of email accounts which used the most disk on my Linux mail server. How do I find out size of email account?
+
+A. Usually mail is stored in /var/mail directory. By running the following command you can get list of email account disk size.
+
+ls -lL will display user filesize.
+
+Use awk command to print user mailbox size along with username
+
+Finally sort command will sort mailbox size.
+
+Type the command:
+
+$ ls -lL /var/mail | awk '{print $5, $9}' | sort -rn
+
+OR
+
+$ ls -lL /var/mail | awk '{print $5, $9}' | head -10
+
+À partir de l’adresse <https://www.cyberciti.biz/faq/page/219/>
+
+https://memo-linux.com/sasl-pour-postfix/

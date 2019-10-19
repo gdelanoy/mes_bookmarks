@@ -1,0 +1,126 @@
+http://ftp.tuwien.ac.at/.vhost/www.openbsd.org/xxx/faq/pf/fr/filter.html#state
+
+http://connect.ed-diamond.com/GNU-Linux-Magazine/GLMFHS-029/PF-pour-les-nuls
+
+setup FreeBSD 10.3 :
+
+____________________
+
+install
+
+Keyboard map : "French ISO 8859-1" Tester si OK, puis remonter tout en haut de la liste
+
+pour "continue with fr.iso.kbd keymap".
+
+Hostname : beastie (?)
+
+optional system components to install : tout décocher, puis OK.
+
+How would you like to partition your disk ?
+
+--> Pour une VM, choisir Auto (UFS) Guided disk Setup.
+
+--> Pour un serveur, on peut partitionner séparément /, /boot, /var et /usr (prévoir de la place pour ce dernier !).
+
+Partition scheme = GPT. --> finish / Commit.
+
+Extract & install ...
+
+Root password = ********** ( x2 )
+
+Network interface = em0
+
+IPv4=yes
+
+DHCP=yes (ou pas)
+
+IPv6=no (ou pas)
+
+Resolver Configuration = ...
+
+Local clock = Europe / Paris / CEST
+
+System Configuration = sshd + dumpdev
+
+Add users ? --> yes
+
+Username: ...
+
+Full Name: ...
+
+UID: Leave Empty
+
+Login group : (enter)
+
+invite ... to other groups ? : wheel
+
+Shell: sh
+
+Home directory: (enter)
+
+Permissions: (enter)
+
+password-based authentication: yes
+
+Empty password: no
+
+Random password: no
+
+password : ********** ( x 2 )
+
+Lock out account after creation ?: no
+
+OK? : yes
+
+Add another user?  : no
+
+exit
+
+Manual shell config : no
+
+REBOOT
+
+Login as root
+
+# pkg install vim-lite bash sudo
+
+y
+
+y
+
+echo "fdesc /dev/fd fdescfs rw 0 0" >> /etc/fstab
+
+Puis aller dans /etc/fstab rectifier les espaces à transformer en tabulations
+
+# visudo
+
+--> Décommenter la ligne %wheel ALL=(ALL) NOPASSWD: ALL
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+FreeBSD  - Setup FreeBSD 11.1 :
+https://www.tecmint.com/freebsd-11-1-installation-guide/?utm_content=bufferdf96a&utm_medium=social&utm_source=facebook.com&utm_campaign=buffer
+https://www.tecmint.com/things-to-do-after-installing-freebsd/?utm_content=buffer07b43&utm_medium=social&utm_source=facebook.com&utm_campaign=buffer
+https://www.tecmint.com/pkg-command-examples-to-manage-packages-in-freebsd/?utm_content=buffer7982b&utm_medium=social&utm_source=facebook.com&utm_campaign=buffer
+
+
+
+Un FreeBSD sympa et facile à installer : 
+https://www.trueos.org/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

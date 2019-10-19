@@ -1,0 +1,23 @@
+Postfix :
+
+https://www.system-linux.eu/index.php?post/2009/01/27/Traitement-de-Queue-mail-Postfix
+
+https://www.system-linux.eu/index.php?post/2009/09/01/Installation-et-Configuration-de-Mailgraph
+
+https://www.system-linux.eu/index.php?post/2009/10/22/Installation-et-Configuration-de-postfixadmin
+
+https://www.cyberciti.biz/faq/postfix-remove-hide-hostnames-ip-addresses/
+
+Commandes telnet pour SMTP POP IMAP :
+
+https://www.system-linux.eu/index.php?post/2010/02/28/Telnet-et-SMTP
+
+https://www.cyberciti.biz/faq/postfix-smtp-authentication-for-mail-servers/
+
+Relais avec smtp externe :
+
+https://www.cyberciti.biz/faq/how-to-configure-postfix-relayhost-smarthost-to-send-email-using-an-external-smptd/
+
+https://www.system-linux.eu/index.php?post/2010/03/31/postgrey-liste-pour-Postfix
+
+https://www.system-linux.eu/index.php?post/2010/03/08/Installation-de-SPF-pour-Posfix

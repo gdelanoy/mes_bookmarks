@@ -1,0 +1,47 @@
+Proxy :
+
+https://www.cyberciti.biz/faq/howto-block-internet-explorer-browser-with-squid-proxy-server-on-a-linuxunix-server/
+
+http://proxy-list.org/french/index.php
+
+https://www.cyberciti.biz/faq/squidguard-web-filter-block-websites/
+
+http://flyspray.org/
+
+http://dsi.ut-capitole.fr/blacklists/
+
+https://www.system-linux.eu/index.php?post/2010/06/04/Installation-et-Configuration-de-Dansguardian-pour-Squid
+
+https://www.cyberciti.biz/faq/squid-proxy-is-not-hiding-client-ip-address/
+
+http://proxy-list.org/french/index.php
+
+http://connect.ed-diamond.com/GNU-Linux-Magazine/GLMFHS-029/PF-pour-les-nuls
+
+http://www.thegeekstuff.com/2011/06/iptables-rules-examples/
+
+https://www.cyberciti.biz/faq/debian-ubuntu-linux-install-onionrouter-software/
+
+https://www.cyberciti.biz/faq/squid-ntlm-authentication-configuration-howto/
+
+How to: Linux / UNIX setup Squid Proxy authentication
+
+by Vivek Gite on October 8, 2007 last updated October 8, 2007
+
+Q. I’m using Squid Cache Version 2.6.STABLE. It is configured perfectly and I’d like to know how do I allow squid to only authenticated users?
+
+A. Squid can authenticate users if squid is configured to use proxy_auth ACLs. Browsers send the user’s authentication credentials in the Authorization request header. If Squid gets a request and the http_access rule list gets to a proxy_auth ACL, Squid looks for the Authorization header. If the header is present, Squid decodes it and extracts a username and password.
+
+If the header is missing, Squid returns an HTTP reply with status 407 (Proxy Authentication Required). The user agent (browser) receives the 407 reply and then prompts the user to enter a name and password. The name and password are encoded, and sent in the Authorization header for subsequent requests to the proxy.
+
+Your Squid software comes with a few authentication helper programs. These include (click link below to open Squid cache authentication configuration tutorial):
+
+À partir de l’adresse <https://www.cyberciti.biz/faq/page/202/>
+
+https://www.cyberciti.biz/faq/squid-ntlm-authentication-configuration-howto/
+
+https://www.cyberciti.biz/tips/howto-configure-squid-ldap-authentication.html
+
+https://www.cyberciti.biz/tips/linux-unix-squid-proxy-server-authentication.html
+
+https://memo-linux.com/installer-un-proxy-squid-et-un-filtrage-avec-squidguard-sous-debian/

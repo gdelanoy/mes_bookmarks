@@ -1,0 +1,17 @@
+VPN :
+
+http://wiki.openip.fr/configuration-des-vpn-ipsec-site-site
+
+https://www.cyberciti.biz/faq/howto-setup-openvpn-server-on-ubuntu-linux-14-04-or-16-04-lts/
+
+http://syskb.com/meilleurs-vpn-anonymat/
+
+http://www.tomshardware.fr/articles/vpn-test-performances-comparatif-guide,2-2487.html#p4
+
+https://www.vpnmag.fr/hidemyass-vpn/
+
+http://korben.info/un-vpn-gratuit-pour-tous.html
+
+https://www.strongswan.org/
+
+https://www.system-linux.eu/index.php?post/2010/05/24/Installation-ipsec-Host-to-Host-et-Network-to-Network

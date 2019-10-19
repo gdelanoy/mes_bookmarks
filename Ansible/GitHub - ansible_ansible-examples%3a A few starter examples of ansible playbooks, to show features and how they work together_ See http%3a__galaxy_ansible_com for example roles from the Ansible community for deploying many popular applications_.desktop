@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Type=Link
+Name=GitHub - ansible/ansible-examples: A few starter examples of ansible playbooks, to show features and how they work together. See http://galaxy.ansible.com for example roles from the Ansible community for deploying many popular applications.
+Comment=
+Icon=user-bookmarks
+URL=https://github.com/ansible/ansible-examples

@@ -1,0 +1,4 @@
+ Remove all intermediate docker images after build
+docker images | grep <none> | awk '{ print $3; }' | xargs docker rmi 
+
+
